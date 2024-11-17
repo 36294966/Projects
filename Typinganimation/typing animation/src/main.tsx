@@ -1,13 +1,17 @@
-import "./style.css"
-import Typewriter from "./Typewriter"
+import "./index.css"
+import Typewriter from "./typewriter"
 
-const typewriter = new Typewriter(document.body,{loop:true})
+const typewriter = new Typewriter(document.querySelector,("whitespace"),
+    as HTMLDivElement,
+{loop:true,
+    
+    })
 
 typewriter
 .typeString("where do I start?")
 .pauseFor(1000)
 .typeString("/n/nfunction")
-.deleteChars(7)
+.deleteChars(10)
 .typeString("const temp")
 .pauseFor(150)
 .deleteAll(10)

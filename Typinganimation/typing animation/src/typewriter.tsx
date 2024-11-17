@@ -13,6 +13,7 @@ export default class Typewriter {
         deletingSpeed: 50 } ={}) {}
 
         this.element = document.createElement("div")
+        this.element.classList.add("whitespace")
         parent.append(this.element)
         this .element = element
         this.loop = loop
@@ -25,15 +26,17 @@ this.#addToQueue(
     })
             let i = 0
             setInterval(() => { setInterval(() => {
-                    this.element.append(string [i])
+                   this.element.textContent = this.element.textContent?.subString(0,this.element.textContent.length -1)
                     i++
-                    if ( i >= String.length) {
+                    if ( i >= number ) {
     clearInterval(interval)
                     resolve()
-    
-                }, this.typingSpeed)
+                    }
+                }, this.deletingSpeed)
+
     })
-)
+    return this 
+}
 this.#queue.push(() => {
     return new Promise(
 return this
@@ -58,12 +61,34 @@ deleteChars(number:number) {
 }
 
 deleteAll( deleteSpeed = this.deletingSpeed) {
-    console.log(number)
+    this.#addToQueue(resolve => {
+        const interval = setInterval(( => {
+            this.element.innerText = this.element.innerText.substring(
+                0,
+                this.element.innerText.length -1)
+                if (this.element.innerText.lenght ===0) {
+                    clearInterval(interval)
+                    resolve
+                }
+        },deleteSpeed)
+        })
     return this
 }
 
     pauseFor(duration: number) {
-        console.log(duration)
+        this.#addToQueue(resolve => {
+            const interval = setTimeout(() => {
+                this.element.innerText = this.element.innerText.substring(
+                    0,
+                    this.element.innerText.lenght -1
+                )
+                if( this.element.innerText.length ===0) {
+                    clearInterval(interval)
+                    resolve()
+                }
+            }
+            }, duration
+        })
 return this
     }
    async start() {

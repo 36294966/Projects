@@ -7,33 +7,63 @@ export default class Typewriter {
     typingSpeed: number
     deletingSpeed: number
 
-    constructor(element: HTMLElement, { loop = false, typingSpeed:50, 
+    constructor(
+        parent: HTMLElement,
+        { loop = false, typingSpeed:50, 
         deletingSpeed: 50 } ={}) {}
 
+        this.element = document.createElement("div")
+        parent.append(this.element)
         this .element = element
         this.loop = loop
         this.typingSpeed = typingSpeed
         this.deletingSpeed = deletingSpeed
     }
 typeString(  string: string){
-this.#queue.push(() => {
-    return new Promise((resolve,reject) => {
-    console.log(string)
-    resolve()
+this.#addToQueue(
+    resolve => {
     })
-})
+            let i = 0
+            setInterval(() => { setInterval(() => {
+                    this.element.append(string [i])
+                    i++
+                    if ( i >= String.length) {
+    clearInterval(interval)
+                    resolve()
+    
+                }, this.typingSpeed)
+    })
+)
+this.#queue.push(() => {
+    return new Promise(
 return this
 }
 deleteChars(number:number) {
+    this.#addToQueue(resolve =>{
+        let i =0
+        const interval = setInterval(() => {
+            this.element.innerText = this .element.innerText?.substring(0,this.element.TextContent.length -1)
+            i++
+            if (i >= number) {
+                clearInterval(interval)
+                resolve()
+            }
+        }, this.deletingSpeed)
+        })
+    }
+
+    )
     return this
 
 }
 
 deleteAll( deleteSpeed = this.deletingSpeed) {
+    console.log(number)
     return this
 }
 
     pauseFor(duration: number) {
+        console.log(duration)
 return this
     }
    async start() {
@@ -46,4 +76,7 @@ return this
 return this
     }
 
-
+#addToQueue(cb:(resolve): () => void) => void) {
+    this.#queue.push(() => { Promise(cb)
+    }
+}
